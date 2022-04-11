@@ -1,0 +1,44 @@
+spring:
+  profiles:
+    include:
+      test
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/nate?useUnicode=true&characterEncoding=UTF8&useSSL=false&useAffectedRows=true
+    username: root
+    password: Admin123456
+  rabbitmq:
+    addresses: 127.0.0.1
+    username: admin
+    password: 123456
+    port: 5672
+    virtual-host: my_vhost
+  redis:
+    sentinel:
+      master: redis1
+      nodes: 127.0.0.1:6379
+    database: 2
+    password: 123456
+
+#upload:
+#  qiniu:
+#    serverAddr:
+#      image: http://image.ylfood.com
+#      video: http://video.ylfood.com
+
+logging:
+  config: classpath:logback-test.xml
+
+
+#xxl:
+#  job:
+#    admin:
+#      addresses: http://admin.ylfood.com/xxl-web
+#    accessToken:
+#    executor:
+#      appname: ylfoodExecutor
+#      address:
+#      ip:
+#      port: 7771
+#      logpath: logs
+#      logretentiondays: 30

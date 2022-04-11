@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dego.mapper.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.dego.entity.po.Permission">
+        <result column="id" property="id" />
+        <result column="permission_code" property="permissionCode" />
+        <result column="permission_name" property="permissionName" />
+        <result column="create_time" property="createTime" />
+        <result column="menu_id" property="menuId" />
+        <result column="url" property="url" />
+        <result column="status" property="status" />
+        <result column="modify_time" property="modifyTime" />
+        <result column="create_user" property="createUser" />
+        <result column="create_account" property="createAccount" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        permission_code, permission_name, create_time, menu_id, url, status, modify_time, create_user, create_account
+    </sql>
+
+    <select id="getPermissionByRoles" resultType="com.dego.entity.po.Permission">
+        SELECT
+            p.`permission_code`,
+            p.`permission_name`
+        FROM
+            `nt_role_permission` rp
+            LEFT JOIN `nt_permission` p
+            ON rp.`permission_id` = p.`id`
+        WHERE rp.role_id IN
+        <foreach collection="list" open="(" separator="," close=")" item="item" >
+            #{item}
+        </foreach>
+    </select>
+
+</mapper>

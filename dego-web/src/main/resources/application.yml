@@ -1,0 +1,37 @@
+server:
+  port: 8777
+spring:
+  application:
+    name: dego-web3
+  profiles:
+    active: test
+  datasource:
+#    driver-class-name: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://127.0.0.1:3306/nate?useUnicode=true&characterEncoding=UTF8&useSSL=false&useAffectedRows=true
+#    username: root
+#    password: Admin123456
+    hikari:
+      auto-commit: true
+      connection-test-query: 'SELECT 1'
+      maximum-pool-size: 8
+      minimum-idle: 2
+      idle-timeout: 30000
+      max-lifetime: 1800000
+      connection-timeout: 30000
+    type: com.zaxxer.hikari.HikariDataSource
+  jackson:
+   time-zone: GMT+8
+
+#upload:
+#  storageLocation: both
+#  qiniu:
+#    accessKey: PiBZH9nhz2dZ2i6AgShh8OrFSrkebIL76Toy5MwP
+#    secretKey: JV0w2-GDcKaONeBUBnZoV8ZKc20U5W1Zm062wHO8
+#    bucket:
+#      image: imagestest
+#      video: videostest
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  type-aliases-package: com.dego.**.entity.po.*
